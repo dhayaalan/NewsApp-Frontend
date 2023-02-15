@@ -1,14 +1,11 @@
 <script>
-  console.log('hello world');
+  // import Nav from '../components/nav.svelte';
+  // import About from './About.svelte';
+  import Layout from './__layout.svelte';
+  import AddNews from './addNews.svelte';
 </script>
 
-<svelte:head>
-  <title>Home Page</title>
-</svelte:head>
-<h1>Welcome to SvelteKit</h1>
-
-<style>
-  h1 {
-    color: aqua;
-  }
-</style>
+<div>
+  <Layout />
+  <AddNews />
+</div>
