@@ -1,11 +1,10 @@
 <script>
   import axios from 'axios';
-  import { bind } from 'svelte/internal';
   import Home from './Home.svelte';
   import { push, pop, replace } from 'svelte-spa-router';
 
   function go_home() {
-    pop(Home);
+    replace(Home);
   }
 
   let headlines = '';
@@ -29,13 +28,20 @@
 </script>
 
 <form action="submit" method="post">
-  <label for="HeadLines" placeholder="Enter the Headlines">headlines:</label>
-  <input type="text" id="fname" />{headlines}<br /><br />
-  <label for="image" placeholder="paste the image link">Image:</label>
-  <input type="text" id="lname" />{image}<br /><br />
-  <label for="Description" placeholder="Enter the description"
-    >Description:</label
-  >
-  <input type="text" id="lname" />{description}<br /><br />
-  <input type ="text" value="Submit" on:click={go_home} />
+  <label for="HeadLines">Headlines</label>
+  <input
+    type="text"
+    placeholder="Enter the Headlines"
+    bind:value={headlines}
+  /><br /><br />
+  <label for="image">Image</label>
+  <input type="text" placeholder="Enter the image url" bind:value={image} /><br
+  /><br />
+  <label for="Description">Description</label>
+  <input
+    type="text"
+    placeholder="Enter the description"
+    bind:value={description}
+  /><br /><br />
+  <input type="text" value="Submit" on:click={fetch} />
 </form>

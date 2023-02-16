@@ -1,6 +1,7 @@
 <script>
   import Router from 'svelte-spa-router';
   import AddNews from './AddNews.svelte';
+  import Catgeory from './Catgeory.svelte';
   import EditNews from './EditNews.svelte';
   import Home from './Home.svelte';
   import NotFound from './NotFound.svelte';
@@ -9,6 +10,7 @@
     '/': Home,
     '/addnews': AddNews,
     '/editnews/:id': EditNews,
+    '/addcategory': Catgeory,
 
     '*': NotFound,
   };
@@ -17,6 +19,7 @@
 <nav>
   <a href="#/">Home</a>
   <a href="#/addnews">AddNews</a>
+  <a href="#/addcategory">AddCategory</a>
 </nav>
 
 <main>

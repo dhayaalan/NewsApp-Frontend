@@ -16,7 +16,11 @@
 
 <button on:click={fetch}>getUser</button>
 
-<div />
-<p>
-  {JSON.stringify(news)}
-</p>
+<div>
+  <h1>News List</h1>
+</div>
+<ul>
+  {#each news as news}
+    <li>{JSON.stringify(news)}</li>
+  {/each}
+</ul>
