@@ -1,11 +1,16 @@
 <script>
-  import Axios from 'axios';
+  import axios, { Axios } from 'axios';
 
   const fetch = () => {
-    Axios.get('http://localhost:3003/news/').then((response) => {
-      console.log(response);
+    return axios({
+      method: 'get',
+      url: 'https://localhost:3003/news/',
+      responseType: 'json',
     });
   };
+  Promise.all(fetch()).then((response) => {
+    console.log(response);
+  });
 </script>
 
 <button on:click={fetch}>getUser</button>
