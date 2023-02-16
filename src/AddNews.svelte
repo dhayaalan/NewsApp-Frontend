@@ -43,5 +43,5 @@
     placeholder="Enter the description"
     bind:value={description}
   /><br /><br />
-  <input type="text" value="Submit" on:click={fetch} />
+  <input type="text" value="Submit" on:click|preventDefault={fetch} />
 </form>

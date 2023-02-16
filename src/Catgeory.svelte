@@ -25,5 +25,5 @@
   <label for="HeadLines">Category</label>
   <input type="text" placeholder="Enter the category" bind:value={name} /><br
   /><br />
-  <input type="text" value="Submit" on:click={fetch} />
+  <input type="text" value="Submit" on:click|preventDefault={fetch} />
 </form>

@@ -20,6 +20,7 @@
   <a href="#/">Home</a>
   <a href="#/addnews">AddNews</a>
   <a href="#/addcategory">AddCategory</a>
+  <a href="#/addcategory/:id">ViewCategory</a>
 </nav>
 
 <main>
