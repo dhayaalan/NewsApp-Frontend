@@ -10,7 +10,6 @@
   let headlines = '';
   let image = '';
   let description = '';
-  let category = '';
 
   const fetch = async () => {
     var res = await axios({
@@ -20,7 +19,6 @@
         headlines: headlines,
         image: image,
         description: description,
-        category: category,
       },
     });
     console.log(res.data);

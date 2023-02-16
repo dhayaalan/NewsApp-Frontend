@@ -9,7 +9,7 @@
   let routes = {
     '/': Home,
     '/addnews': AddNews,
-    '/editnews/:id': EditNews,
+    '/editnews/`${id}`': EditNews,
     '/addcategory': Catgeory,
 
     '*': NotFound,
@@ -20,6 +20,7 @@
   <a href="#/">Home</a>
   <a href="#/addnews">AddNews</a>
   <a href="#/addcategory">AddCategory</a>
+  <a href="#/editnews/:id">Edit Category</a>
   <a href="#/addcategory/:id">ViewCategory</a>
 </nav>
 
