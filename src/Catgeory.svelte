@@ -1,11 +1,6 @@
 <script>
   import axios from 'axios';
   import Home from './Home.svelte';
-  import { push, pop, replace } from 'svelte-spa-router';
-
-  function go_home() {
-    replace(Home);
-  }
 
   let name = '';
 
@@ -21,9 +16,14 @@
   };
 </script>
 
-<form action="submit" method="post">
-  <label for="HeadLines">Category</label>
-  <input type="text" placeholder="Enter the category" bind:value={name} /><br
-  /><br />
-  <input type="text" value="Submit" on:click|preventDefault={fetch} />
-</form>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Category</label>
+  <input
+    type="text"
+    class="form-control"
+    id="exampleFormControlInput1"
+    placeholder="Enter Category"
+    bind:value={name}
+  />
+</div>
+<button type="button" class="btn btn-primary" on:click={fetch}>Submit</button>

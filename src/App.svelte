@@ -9,19 +9,29 @@
   let routes = {
     '/': Home,
     '/addnews': AddNews,
-    '/editnews/`${id}`': EditNews,
+    '/editnews/': EditNews,
     '/addcategory': Catgeory,
 
     '*': NotFound,
   };
 </script>
 
-<nav>
-  <a href="#/">Home</a>
-  <a href="#/addnews">AddNews</a>
-  <a href="#/addcategory">AddCategory</a>
-  <a href="#/editnews/:id">Edit Category</a>
-  <a href="#/addcategory/:id">ViewCategory</a>
+<nav class="navbar bg-primary navbar navbar-expand-lg" data-bs-theme="dark">
+  <div class="container-fluid nav justify-content-end">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav">
+        <li class="nav-item ">
+          <a class="nav-link active" aria-current="page" href="#/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#/addnews">AddNews</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#/addcategory">AddCategory</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
 
 <main>

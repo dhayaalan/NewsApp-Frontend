@@ -1,22 +1,14 @@
 <script>
   import axios from 'axios';
-  import Home from './Home.svelte';
-  import { push, pop, replace } from 'svelte-spa-router';
   import { onMount } from 'svelte';
 
-  function go_home() {
-    replace(Home);
-  }
-
-  export let id = '';
   let name = '';
 
-  onMount( async () => {
+  onMount(async () => {
     var res = await axios({
       method: 'put',
-      url: 'http://localhost:3003/news/'`${req.params.id}`,
+      url: `http://localhost:3003/news/`,
       data: {
-        id: id,
         name: name,
       },
     });
@@ -24,9 +16,26 @@
   });
 </script>
 
-<form action="submit" method="post">
-  <label for="HeadLines">Title</label>
-  <input type="text" placeholder="Edit the title" bind:value={name} /><br /><br
+<div class="form-floating mb-3">
+  <label for="floatingInput">HeadLines</label>
+  <input
+    type="text"
+    class="form-control"
+    id="floatingInput"
+    placeholder="Change news HeadLines"
+    bind:value={name}
   />
-  <input type="text" value="Submit" on:click|preventDefault={fetch} />
-</form>
+</div>
+<button type="button" class="btn btn-primary" on:click={fetch}>Submit</button>
+
+<style>
+  div {
+    padding-top: 10px;
+    padding-left: 0px;
+    padding-right: 75%;
+    align-items: center;
+  }
+  label {
+    padding-left: 35px;
+  }
+</style>
