@@ -38,32 +38,31 @@
   });
 </script>
 
-<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">HeadLines</label>
+<div class="form-floating mb-3">
+  <label for="floatingInput">HeadLines</label>
   <input
     type="text"
     class="form-control"
-    id="exampleFormControlInput1"
+    id="floatingInput"
     placeholder="Enter HeadLines"
     bind:value={headlines}
   />
 </div>
-<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Image</label>
+<div class="form-floating mb-3">
+  <label for="floatingInput">Image</label>
   <input
     type="text"
     class="form-control"
-    id="exampleFormControlInput1"
+    id="floatingInput"
     placeholder="Image Link"
     bind:value={image}
   />
 </div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Description</label
-  >
+<div class="form-floating mb-3">
+  <label for="floatingInput">Description</label>
   <textarea
     class="form-control"
-    id="exampleFormControlTextarea1"
+    id="floatingInput"
     rows="3"
     bind:value={description}
   />
@@ -87,7 +86,8 @@
     padding-right: 75%;
     align-items: center;
   }
-  select{
-    padding-block: 5px 5px;
+  select {
+    margin-right: 75%;
+    padding-right: 75%;
   }
 </style>
