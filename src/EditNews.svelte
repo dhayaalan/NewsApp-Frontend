@@ -2,41 +2,41 @@
   import axios from 'axios';
   import { onMount } from 'svelte';
   import { push } from 'svelte-spa-router';
-  import news from './Home.svelte';
+  import { newsId } from './store/news';
 
   let headline = '';
   let image = '';
   let description = '';
+  let id = '';
 
-  const get_data = () => {
-    push(fetch);
-  };
-
-  const fetch = async () => {
-    const id = document.querySelector('select').value;
-    var res = await axios({
-      method: 'get',
-      url: 'http://localhost:3003/news',
-      data: {
-        headline: req.body.headline,
-        image: req.body.image,
-        description: req.body.description,
-      },
-    });
-    console.log(res.data);
-  };
+  newsId.subscribe((value) => {
+    id = value
+  });
 
   onMount(async () => {
     var res = await axios({
+      method: 'get',
+      url: `http://localhost:3003/news/${id}`,
+    });
+    console.log(res.data);
+    headline = res.data.newses.headlines;
+    image = res.data.newses.image;
+    description = res.data.newses.description;
+  });
+
+  const handleUpdate = async () => {
+    var res = await axios({
       method: 'put',
-      url: 'http://localhost:3003/news/:id',
+      url: `http://localhost:3003/news/${id}`,
       data: {
         headline: headline,
         description: description,
+        image: image,
       },
     });
     console.log(res.data);
-  });
+    push("/");
+  };
 </script>
 
 <div class="form-floating mb-3">
@@ -60,7 +60,7 @@
     bind:value={description}
   />
 </div>
-<button type="button" class="btn btn-primary" on:click={get_data}>Submit</button
+<button type="button" class="btn btn-primary" on:click={handleUpdate}>Submit</button
 >
 
 <style>

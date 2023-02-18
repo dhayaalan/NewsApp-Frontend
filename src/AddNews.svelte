@@ -4,10 +4,6 @@
   import { push, pop, replace } from 'svelte-spa-router';
   import { onMount } from 'svelte';
 
-  function go_home() {
-    replace(Home);
-  }
-
   let headlines = '';
   let image = '';
   let description = '';
@@ -27,6 +23,7 @@
       },
     });
     console.log(res.data);
+    push('/');
   };
 
   onMount(async () => {
