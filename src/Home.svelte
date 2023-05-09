@@ -1,67 +1,99 @@
 <script>
-  import axios from 'axios';
-  import { onMount } from 'svelte';
-  import { pop, push, replace } from 'svelte-spa-router';
-  import { newsId } from './store/news';
 
-  let news = [];
+  let searchQuery = '';
+  let searchResults = [];
 
-  const go_edit = (id) => {
-    newsId.update((existing) => id);
-    push(`/editnews/${id}`);
-  };
-
-  onMount(async () => {
-    var res = await axios({
-      method: 'get',
-      url: 'http://localhost:3003/news/',
-      responseType: 'json',
-    });
-    news = res.data;
-    console.log(news);
-  });
-
-  const go_delete = async (id) => {
-    var res = await axios({
-      method: 'delete',
-      url: `http://localhost:3003/news/${id}`,
-      responseType: 'json',
-    });
-    news = res.data.result;
-    console.log(news);
-  };
+  // onMount(async () => {
+  //   var res = await axios({
+  //     method: 'get',
+  //     url: 'http://localhost:3003/news/',
+  //     responseType: 'json',
+  //   });
+  //   news = res.data;
+  //   console.log(news);
+  // });
+  async function handleSearch() {
+    const response = await fetch(
+      `https://dnsdumpster.com/static/map/${searchQuery}.png`
+    );
+    if (response.ok) {
+      searchResults = [
+        {
+          name: searchQuery,
+          image: URL.createObjectURL(await response.blob()),
+        },
+      ];
+    } else {
+      searchResults = [];
+    }
+  }
 </script>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {#each news as newses}
-    <div class="col">
-      <div class="card h-100">
-        <img src={newses.image} class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">{newses.headlines}</h5>
-          <p class="card-text">{newses.description}</p>
-        </div>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button
-            type="button"
-            class="btn btn-primary"
-            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size:15px"
-            on:click={go_edit(newses._id)}>Edit</button
-          >
-          <button
-            type="button"
-            class="btn btn-primary"
-            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size:15px"
-            on:click={go_delete(newses._id)}>Delete</button
-          >
-        </div>
-      </div>
-    </div>
-  {/each}
+<div class="search-container">
+  <label for="Search" class="search">Search:</label>
+  <input
+    class="search-input"
+    type="text"
+    placeholder="Enter domain name"
+    bind:value={searchQuery}
+  />
+
+  <button class="search-button" on:click={handleSearch}>Search</button>
 </div>
 
+{#if searchResults}
+  <ul class="search-results">
+    <!-- {#each searchResults as result} -->
+    <li>Youtube</li>
+    <li>google</li>
+    <li>Yahoo</li>
+    <li>Hotmail</li>
+    <!-- {/each} -->
+  </ul>
+{/if}
+
 <style>
-  div {
-    padding-top: 5px;
+  .search-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .search-input {
+    padding: 8px;
+    margin-right: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .search-button {
+    padding: 8px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007aff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .search-button:hover {
+    background-color: #0062cc;
+  }
+
+  .search-results {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .search-results li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
   }
 </style>
